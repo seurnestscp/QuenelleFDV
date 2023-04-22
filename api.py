@@ -7,7 +7,6 @@ from .generation import codec_decode, generate_coarse, generate_fine, generate_t
 
 def text_to_semantic(
     text: str,
-    history_prompt: Optional[str] = None,
     temp: float = 0.7,
     silent: bool = False,
 ):
@@ -21,9 +20,7 @@ def text_to_semantic(
 
     Returns:
         numpy semantic array to be fed into `semantic_to_waveform`
-    """
-    x_semantic = generate_text_semantic(
-        text,
+    """      text,
         history_prompt=history_prompt,
         temp=temp,
         silent=silent,
@@ -106,8 +103,6 @@ def generate_audio(
         text, history_prompt=history_prompt, temp=text_temp, silent=silent,
     )
     out = semantic_to_waveform(
-        semantic_tokens,
-        history_prompt=history_prompt,
         temp=waveform_temp,
         silent=silent,
         output_full=output_full,
